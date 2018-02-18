@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html,body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    background: #f9f9f9;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    background: #00b1b3;
+    padding: 1em;
+    font-size:1.3em;
+}
+
+@media screen and (max-width: 767px){
+    nav {
+        display: block;
+    }
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    padding: 0 1em;
+    &:hover {
+        text-decoration:none;
+        color: #006666;
+    }
+}
+
+footer{
+    display: flex;
+    padding: 1.5em;
+    font-weight: bold;
+    justify-content: center;
+    background: #00b1b3;
+    color: white;
+}
+
+main {
+    display: flex;
+}
+
+.main_text {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    padding-top: 1em;
+    padding-left: 3em;
+    padding-right: 5em;
+    line-height: 2;
+    font-size: .9em;
+    color: #4d545d;
+    flex-direction: column;
+    text-align:center;
+}
+.main_text h3 {
+    text-align: center;
+}
+
+.main_photo{ 
+    display: flex;
+    padding-right: 2em;
+    padding-top:1em;
+    flex-direction: column;
+}
+
+.main_photo img{ 
+    width: 150px;
+    height: 150px;
+}
+
+#log_in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.log_in_fields:not(:last-child) {
+    margin-bottom: .5em;
+}
+
+.log_in_fields.has-addon .control-addon {
+    background:#e3e3e3;
+    width: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log_in_fields.has-addon .control-field{
+    flex: 1;
+    border: 1px solid #e3e3e3
+}
+.log_in_fields.has-addon .control-field:focus{
+    outline: none;
+    border: 1px solid #00b1b3;
+    animation: fadeColor 2s;    
+    animation-iteration-count: infinite;
+}
+
+
+
+.log_in_fields > * {
+    padding: 0.5em; 
+}
+
+.log_in_fields.has-addon{
+    display: flex;
+}
+
+.box {
+    padding: 2em;
+    border:1px solid #00b1b3;;
+    width: 70%;
+    margin:2em auto;
+}
+
+@keyframes fadeColor {
+    50%{
+        color: black;
+    }
+}
+
+.log_in_fields.has-addon > input {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+::placeholder { 
+   color:#B4B4B4;
+}
+
+.user_button {
+    background: white;
+    border:2px solid #00b1b3;
+    color:#00b1b3;
+    font-weight: bold;
+    padding: .3em 1em;
+    font-size: 1.5em;
+    display: flex;
+    margin-top:0.5em;
+}
+.user_button:hover {
+    background:  #00b1b3;
+    border:2px solid white;
+    color:white;
+    outline: none;
+}
+
+main > form {
+    margin:auto;
+}
+
+.btn-link {
+    font-size:0.8em;
+    text-decoration:none;
+    color:grey;
+}
+
