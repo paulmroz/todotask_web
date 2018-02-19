@@ -9,7 +9,7 @@
         {{ session('status') }}
     </div>
     @endif
-    <h3>Your task here.</h3>
+    <h3>Your task here</h3>
 </div>
 
 @endsection

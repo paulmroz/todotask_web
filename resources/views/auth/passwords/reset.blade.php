@@ -21,21 +21,21 @@
         </div>
     </div>
     --}}
-      <div class="log_in_fields has-addon">
+      <div class="log_in_fields has-addon{{ $errors->has('email') ? ' has-error' : '' }}">
         <span class="control-addon">
             <i class="fas fa-envelope"></i>
         </span>
         <input id="email" type="email" class="control-field" name="email" value="{{ $email or old('email') }}" required autofocus placeholder="E-Mail Address">
      </div> 
 
-     <div class="log_in_fields has-addon">
+     <div class="log_in_fields has-addon{{ $errors->has('password') ? ' has-error' : '' }}">
         <span class="control-addon">
             <i class="fas fa-key"></i>
         </span>
         <input id="password" type="password" class="control-field" name="password" required placeholder="Password">
      </div> 
 
-       <div class="log_in_fields has-addon">
+       <div class="log_in_fields has-addon{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
         <span class="control-addon">
             <i class="fas fa-unlock"></i>
         </span>

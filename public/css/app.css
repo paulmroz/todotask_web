@@ -74,19 +74,17 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main_text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 50%;
   padding-top: 1em;
-  padding-left: 3em;
-  padding-right: 5em;
   line-height: 2;
   font-size: .9em;
   color: #4d545d;
@@ -105,12 +103,12 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-right: 2em;
-  padding-top: 1em;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  text-align: center;
+  padding-top: 1em;
 }
 
 .main_photo img {
@@ -166,6 +164,26 @@ main {
           animation-iteration-count: infinite;
 }
 
+.log_in_fields.has-addon.has-error > input {
+  border: 1px solid red;
+}
+
+.log_in_fields.has-addon.has-error > input::-webkit-input-placeholder {
+  color: #FF6F6FFF;
+}
+
+.log_in_fields.has-addon.has-error > input:-ms-input-placeholder {
+  color: #FF6F6FFF;
+}
+
+.log_in_fields.has-addon.has-error > input::-ms-input-placeholder {
+  color: #FF6F6FFF;
+}
+
+.log_in_fields.has-addon.has-error > input::placeholder {
+  color: #FF6F6FFF;
+}
+
 .log_in_fields > * {
   padding: 0.5em;
 }
@@ -181,6 +199,17 @@ main {
   border: 1px solid #00b1b3;
   width: 70%;
   margin: 2em auto;
+}
+
+.box-main-content {
+  padding: 2em;
+  border: 1px solid #00b1b3;
+  width: 70%;
+  margin: 2em auto;
+}
+
+.box-main-content > * {
+  margin: auto;
 }
 
 @-webkit-keyframes fadeColor {
@@ -244,5 +273,49 @@ main > form {
   font-size: 0.8em;
   text-decoration: none;
   color: grey;
+}
+
+.filed_title_text {
+  font-weight: bold;
+  font-size: 2em;
+  color: #00b1b3;
+}
+
+.error_field {
+  color: #B90000;
+  margin-top: 1em;
+  padding: .5em;
+  background: #DFB0AA;
+}
+
+.tasks-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 2em;
+}
+
+.tasks-column h3,
+p,
+h1 {
+  color: #7C7C7C;
+  margin-bottom: .5em;
+}
+
+.tasks-column a {
+  text-decoration: none;
+  color: #7C7C7C;
+}
+
+.single-task {
+  padding: 1em 0;
+}
+
+.header-title {
+  color: #00b1b3;
 }
 
