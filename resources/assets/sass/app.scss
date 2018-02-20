@@ -52,7 +52,7 @@ footer{
 
 main {
     display: flex;
-    flex-direction:column;
+    flex-direction:row;
 }
 
 .main_text {
@@ -218,7 +218,32 @@ main > form {
     padding:1em 0;
 }
 
-.header-title{
+.header-title {
     color:#00b1b3;
 }
- 
+
+.task-notes{
+    display:flex;
+    flex-direction:column;
+}
+
+.note-body {
+    color:#7C7C7C;
+    padding-top:0.5em;
+    border-bottom:1px solid #00b1b3;
+} 
+.sidebar-column {
+    margin:2em auto;
+    h3 {
+       color: #00b1b3;
+    }
+    .archives{
+        align-items:center;
+        & a {
+            text-decoration:none;
+            color:#7C7C7C;
+        }
+    }
+}
+
+

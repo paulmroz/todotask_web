@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Task;
 
+use Carbon\Carbon;
+
+use App\Repositories\TaskRepository;
+
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -18,9 +22,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TaskRepository $tasks)
     {   
-        $tasks = Task::latest()->paginate(5);
+        $tasks=$tasks->fetchAlluserTask();
 
         return view('task.index',compact('tasks'));
     }
@@ -43,14 +47,17 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-            $validationData = request()->validate([
-
+            request()->validate([
                 'title'=> 'required|min:5|max:200',
                 'body' => 'required',
-
             ]);
 
-            Task::create($validationData);
+
+            Task::create([
+                'title'=> request('title'),
+                'body' => request('body'),
+                'user_id'=> auth()->id()
+            ]);
 
             return redirect('/tasks');
     }

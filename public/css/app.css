@@ -74,10 +74,10 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .main_text {
@@ -317,5 +317,40 @@ h1 {
 
 .header-title {
   color: #00b1b3;
+}
+
+.task-notes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.note-body {
+  color: #7C7C7C;
+  padding-top: 0.5em;
+  border-bottom: 1px solid #00b1b3;
+}
+
+.sidebar-column {
+  margin: 2em auto;
+}
+
+.sidebar-column h3 {
+  color: #00b1b3;
+}
+
+.sidebar-column .archives {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar-column .archives a {
+  text-decoration: none;
+  color: #7C7C7C;
 }
 
