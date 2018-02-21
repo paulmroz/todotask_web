@@ -26,6 +26,8 @@ class ContactController extends Controller
 
 		Mail::to('paulmroz97@gmail.com')->send(new AskEmail($validationEmail,$user));
 
+		session()->flash('message','Email sended');
+
 		return redirect()->back();
 	}
 }

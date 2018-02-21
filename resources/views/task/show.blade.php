@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+@if($flash = session('message'))
+		<div id="flash-message">
+			{{$flash}}
+		</div>
+	@endif
 <div class="box-main-content">
 	
 	<div class="tasks-column">

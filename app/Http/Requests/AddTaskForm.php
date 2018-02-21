@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Task;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddTaskForm extends FormRequest
@@ -13,7 +15,7 @@ class AddTaskForm extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,18 @@ class AddTaskForm extends FormRequest
     public function rules()
     {
         return [
-            //
+        'title'=> 'required|min:5|max:200',
+        'body' => 'required',
         ];
+    }
+
+    public function persist()
+    {
+
+        Task::create([
+            'title'=> request('title'),
+            'body' => request('body'),
+            'user_id'=> auth()->id()
+        ]);
     }
 }

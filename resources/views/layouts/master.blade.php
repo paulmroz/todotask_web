@@ -7,6 +7,7 @@
 		<title>Flexbox</title>
 		<link rel="stylesheet" type="text/css" href="/css/app.css">
 		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
 		@yield('scripts')
   </head>
   <body>

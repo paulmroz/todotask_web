@@ -6,6 +6,8 @@ use App\Task;
 
 use Carbon\Carbon;
 
+use App\Http\Requests\AddTaskForm;
+
 use App\Repositories\TaskRepository;
 
 use Illuminate\Http\Request;
@@ -45,19 +47,11 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddTaskForm $form)
     {
-            request()->validate([
-                'title'=> 'required|min:5|max:200',
-                'body' => 'required',
-            ]);
+            $form->persist();
 
-
-            Task::create([
-                'title'=> request('title'),
-                'body' => request('body'),
-                'user_id'=> auth()->id()
-            ]);
+            session()->flash('message','Task added');
 
             return redirect('/tasks');
     }
