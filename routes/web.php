@@ -23,3 +23,6 @@ Route::post('/tasks/{task}/notes', 'NotesController@store');
 
 Route::get('/contact', 'ContactController@create');
 Route::post('/contact', 'ContactController@sendEmail');
+
+Route::get('/gallery', 'PhotoController@create');
+Route::post('/gallery', 'PhotoController@store');
