@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('scripts')
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/css/app.css">
 @endsection
 @section('content')
@@ -19,6 +18,13 @@
 		<div class="single-task">
 			<h3><a href="/tasks/{{$task->id}}">{{$task->title}}</a></h3>
 			<p>{{$task->body}}</p>
+			@auth
+			<form method="POST" action="/tasks/{{$task->id}}">
+				{{ csrf_field() }}
+                {{ method_field('DELETE')}}
+				<button type="delete">Delete</button>	
+			</form>
+			@endauth
 		</div>	
 		@endforeach
 		{{$tasks->appends(Request::except('page'))->links()}}

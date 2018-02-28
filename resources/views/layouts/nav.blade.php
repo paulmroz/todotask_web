@@ -10,8 +10,12 @@
 			</i> 		
 			Home		
 		</a>
-		<a href="#" class="nav-item">About</a>
-		<a href="#" class="nav-item">Services</a>
+		@auth
+			<a href="/tasks" class="nav-item">My Tasks</a>
+			<a href="/tasks/create" class="nav-item">Add task</a>
+		@endauth
+		<a href="/contact" class="nav-item">Contact</a>
+		<a href="/gallery" class="nav-item">Gallery</a>
 	</div>
 	<div class="nav-left">
 		 @if(!Auth::check())
@@ -19,10 +23,9 @@
 			 <a href="{{ route('register') }}" class="nav-item">Register</a>
 		 @endif
 
-		 @if(Auth::check()) 
-		 	{{-- <a href="{{ route('logout') }}" class="nav-item">Logout</a> --}}
-		 	<a href="/logout" class="nav-item">Logout</a>
-		  @endif
+		 @auth
+		 	<a href="{{ route('logout') }}" class="nav-item">Logout</a>
+		 @endauth
 		
 	</div>
 </nav>

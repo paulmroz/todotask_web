@@ -1,15 +1,20 @@
 @extends('layouts.master')
-
+@section('scripts')
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- 33 KB -->
+	<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+@endsection
 @section('content')
 <div class="box-main-content">
+@auth
+	<a href="/gallery/manage" class="user_button manage">Click -> to manage the gallery</a>
+@endauth	
 <div class="main_photo">
-        <div>
+        <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs" data-loop="true">
     		@foreach($photos as $photo)
     			<img src="storage/photos/{{$photo->photo}}">
-    			{{-- {{dd('storage/photos/'.$photo->photo)}} --}}
     		@endforeach
         </div>
-
  </div>
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Task;
 
+use App\Note;
+
 use Carbon\Carbon;
 
 use App\Http\Requests\AddTaskForm;
@@ -97,7 +99,18 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Task $task)
-    {
-        //
+    {   
+
+        if ($task->user->id === auth()->id())  {
+            $task->find($task->id);
+
+            $task->notes()->delete();
+
+            $task->delete();
+
+            session()->flash('message', 'Your post has been successfully deleted');
+        }
+
+        return redirect()->back();
     }
 }

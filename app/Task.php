@@ -12,6 +12,10 @@ class Task extends Model
 
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public static function archives(){
     	return static::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
                 ->groupBy('year' ,'month')
@@ -20,9 +24,7 @@ class Task extends Model
                 ->get(); 
     }
 
-    public function user(){
-    	return $this->belongsTo(User::class);
-    }
+   
 
     public function scopeFilter($query, $filters){
     	if (isset($filters['month']) && $month = $filters['month']) {

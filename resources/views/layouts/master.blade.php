@@ -20,4 +20,6 @@
 		@include('layouts.footer')
 	 </div>
   </body>
+
+  @yield('scripts_js')
 </html>

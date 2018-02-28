@@ -2,7 +2,9 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+	$photos = \App\Photo::take(4)->get();
+    return view('welcome', compact('photos'));
+
 });
 
 Auth::routes();
@@ -18,6 +20,7 @@ Route::get('/logout', function(){
 Route::get('/tasks','TaskController@index');
 Route::get('/tasks/create', 'TaskController@create');
 Route::post('/tasks', 'TaskController@store');
+Route::delete('/tasks/{task}', 'TaskController@destroy');
 Route::get('/tasks/{task}', 'TaskController@show');
 Route::post('/tasks/{task}/notes', 'NotesController@store');
 
@@ -25,4 +28,7 @@ Route::get('/contact', 'ContactController@create');
 Route::post('/contact', 'ContactController@sendEmail');
 
 Route::get('/gallery', 'PhotoController@create');
+Route::get('/gallery/manage', 'PhotoController@index');
 Route::post('/gallery', 'PhotoController@store');
+
+Route::delete('/gallery/{photo}', 'PhotoController@destroy');

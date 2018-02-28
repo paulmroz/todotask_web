@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 
+use App\Http\Requests\AddPhotoForm;
+
 use Illuminate\Http\Request;
 
 class PhotoController extends Controller
@@ -11,11 +13,17 @@ class PhotoController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\
      */
-    public function index()
-    {
 
+    public function __construct(){
+        $this->middleware('auth')->except('create');
+    }
+
+    public function index()
+    {   
+        $photos = Photo::paginate(10);
+        return view('gallery.manage',compact('photos'));
     }
 
     /**
@@ -26,7 +34,7 @@ class PhotoController extends Controller
     public function create()
     {
         $photos = Photo::all();
-        return view('galery.index',compact('photos'));    
+        return view('gallery.index',compact('photos'));    
 
     }
 
@@ -36,35 +44,10 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddPhotoForm $request)
     {
-            request()->validate([
-                'name' => 'required',
-                'photo' => 'required'
-            ]);
-
-            $fileNameWithExt = $request->file('photo')->getClientOriginalName();
-
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-
-            $extension = $request->file('photo')->getClientOriginalExtension();
-
-            $fileNameToStore = $fileName.'_'. time().'.'.$extension;
-
-            $fileSize = $request->file('photo')->getClientSize();
-
-            $path = $request->file('photo')->storeAs('public/photos', $fileNameToStore);
-
-            
-
-            Photo::create([
-
-                'photo'=> $fileNameToStore,
-                'title' => request('name'),
-                'size' => $fileSize,
-                'description' => request('description')
-
-            ]);
+        
+            $request->persist();
 
             session('message','Photo added');
 
@@ -81,7 +64,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        //
+        
     }
 
     /**
@@ -115,6 +98,8 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        $photo->delete();
+
+        return redirect()->back();
     }
 }
