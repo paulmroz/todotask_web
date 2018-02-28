@@ -12,7 +12,7 @@
 	            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
 	    </div>
 	     @if (session('status'))
-		    <div class="alert alert-success">
+		    <div id="flash-message">
 		        {{ session('status') }}
 		    </div>
 	    @endif       

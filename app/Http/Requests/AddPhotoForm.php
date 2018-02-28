@@ -52,6 +52,7 @@ class AddPhotoForm extends FormRequest
                 'photo'=> $fileNameToStore,
                 'title' => request('name'),
                 'size' => $fileSize,
+                'user_id'=> auth()->id(),
                 'description' => request('description')
 
             ]);

@@ -101,7 +101,8 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {   
 
-        if ($task->user->id === auth()->id())  {
+        if ($task->user_id === auth()->id())  {
+
             $task->find($task->id);
 
             $task->notes()->delete();

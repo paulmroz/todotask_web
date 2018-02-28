@@ -97,8 +97,16 @@ class PhotoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Photo $photo)
-    {
-        $photo->delete();
+    {   
+        if(auth()->user()->admin == true){
+            $photo->find($photo->id);
+            $photo->delete();
+        }
+
+        if($photo->user_id == auth()->id()){
+            $photo->find($photo->id);
+            $photo->delete();
+        }    
 
         return redirect()->back();
     }
