@@ -29,11 +29,10 @@ nav {
     font-size:1.3em;
 }
 
-@media screen and (max-width: 767px){
-    nav {
-        display: block;
-    }
+.menu {
+  display:none;
 }
+
 
 .nav-item {
     color: white;
@@ -286,6 +285,28 @@ main > form {
     }
 }
 
+.task-buttons {
+  display:flex;
+  flex-direction:row;
+  form:not(:first-child) {
+    margin-left:1em;
+  }
+  button {
+    padding:0.1em .8em;
+    font-weight:bold;
+    color:#00b1b3;
+    background-color:white;
+    border:1px solid #00b1b3;
+    &.delete-button {
+      color:#B90000;
+    }
+   
+  }
+  & button:hover{
+      background-color:#DDDDDD;
+  }
+}
+
 #flash-message {
     bottom: 20px;
     position: absolute;
@@ -397,5 +418,32 @@ main > form {
 .pagination-sm > li:last-child > span {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+
+@media only screen and (max-width: 768px){
+    #main_nav {
+      display:none;
+    }
+    #main_nav.active {
+      display:block;
+      width:100%;
+      a{
+        display:block;
+        padding:1em 0;
+        border-bottom:1px solid grey;
+        &:last-child{
+          border-bottom:none;
+        }
+      }
+    }
+    .menu {
+      display:block;
+      background-color:#00b1b3;
+      padding:0.6em;
+      width:100%;
+      font-size:2em;
+      color:white;
+     } 
 }
 

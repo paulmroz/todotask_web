@@ -77,7 +77,15 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        if($task->user_id === auth()->id()){
+
+            $task = Task::find($task->id);
+
+            return view('task.edit', compact('task'));
+
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -89,7 +97,17 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+        $task->title = request('title');
+        $task->body = request('body');
+        $task->save();
+        session()->flash('message', 'Task updated successfully.');
+        return redirect('/tasks');
+
+
     }
 
     /**

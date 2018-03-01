@@ -19,11 +19,17 @@
 			<h3><a href="/tasks/{{$task->id}}">{{$task->title}}</a></h3>
 			<p>{{$task->body}}</p>
 			@auth
-			<form method="POST" action="/tasks/{{$task->id}}">
-				{{ csrf_field() }}
-                {{ method_field('DELETE')}}
-				<button type="delete">Delete</button>	
-			</form>
+			<div class="task-buttons">
+				<form method="POST" action="/tasks/{{$task->id}}/edit">
+					{{ csrf_field() }}
+					<button class="update-button" type="delete">Update</button>	
+				</form>
+				<form method="POST" action="/tasks/{{$task->id}}">
+					{{ csrf_field() }}
+	                {{ method_field('DELETE')}}
+					<button class="delete-button" type="delete">Delete</button>	
+				</form>
+			</div>
 			@endauth
 		</div>	
 		@endforeach
