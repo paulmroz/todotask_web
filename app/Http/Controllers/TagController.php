@@ -15,6 +15,11 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('admin')->except('index');
+    }
+
     public function index(Tag $tag)
     {   
             $tasks = $tag->tasks()->where('user_id',auth()->id())->paginate(5);

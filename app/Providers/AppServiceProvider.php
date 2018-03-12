@@ -17,8 +17,10 @@ class AppServiceProvider extends ServiceProvider
 
             $archives =\App\Task::archives();
 
-            $tags =  \App\Tag::has('tasks')->pluck('name');
+            /*$tags =  \App\Tag::has('tasks')->pluck('name');*/
 
+            $tags =  \App\Task::where('user_id',auth()->id())->has('tags')->with('tags')->get();
+          
             $view->with(compact('archives', 'tags'));
     
         });
