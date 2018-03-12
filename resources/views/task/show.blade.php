@@ -14,6 +14,18 @@
 			<h1 class="header-title">{{$task->title}}</h1>
 			
 			<p>{{$task->body}}</p>
+			<h2>Tags:</h2>
+			@if(count($task->tags))
+				<ul class="tags_links">
+					@foreach($task->tags as $tag)
+						<li>
+							<a class="tags_links" href="/tasks/tags/{{$tag->name}}">
+								#{{$tag->name}}
+							</a>
+						</li>	
+					@endforeach
+				</ul>
+			@endif
 		</div>	
 		<div class="task-notes">
 			@if(count($task->notes))

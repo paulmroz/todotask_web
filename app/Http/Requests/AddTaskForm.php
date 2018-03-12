@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Task;
 
+use App\Tag;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddTaskForm extends FormRequest
@@ -32,12 +34,24 @@ class AddTaskForm extends FormRequest
     }
 
     public function persist()
-    {
-
-        Task::create([
+    {  
+        $task = Task::create([
             'title'=> request('title'),
             'body' => request('body'),
             'user_id'=> auth()->id()
         ]);
+
+        $tag_first = Tag::where('name', request('tag_first'))->first();
+        $tag_second = Tag::where('name', request('tag_second'))->first();
+        $tag_third = Tag::where('name', request('tag_third'))->first();
+
+        try{
+            $task->tags()->attach($tag_first);
+            $task->tags()->attach($tag_second);
+            $task->tags()->attach($tag_third);
+        }catch (\Illuminate\Database\QueryException $e){
+            
+        }
+
     }
 }

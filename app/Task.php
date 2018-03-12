@@ -7,13 +7,15 @@ use Carbon\Carbon;
 class Task extends Model
 {
     public function notes(){
-
     	 return $this->hasMany(Note::class);
-
     }
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'tag_task');
     }
 
     public static function archives(){

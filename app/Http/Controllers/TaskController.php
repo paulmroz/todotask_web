@@ -6,6 +6,8 @@ use App\Task;
 
 use App\Note;
 
+use App\Tag;
+
 use Carbon\Carbon;
 
 use App\Http\Requests\AddTaskForm;
@@ -40,7 +42,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('task.create');
+        $tags = Tag::all();
+
+        return view('task.create',compact('tags'));
     }
 
     /**
@@ -51,7 +55,13 @@ class TaskController extends Controller
      */
     public function store(AddTaskForm $form)
     {
-            $form->persist();
+        $form->persist();
+
+       /* try{
+           $form->persist();
+        } catch(Exception $e){
+            return 'nie można';
+        } */
 
             session()->flash('message','Task added');
 
@@ -118,6 +128,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {   
+
+        //Task::where('user_id')
 
         if ($task->user_id === auth()->id())  {
 

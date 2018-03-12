@@ -367,7 +367,8 @@ main > form {
 
 .tasks-column h3,
 p,
-h1 {
+h1,
+h2 {
   color: #7C7C7C;
   margin-bottom: .5em;
 }
@@ -383,6 +384,10 @@ h1 {
 
 .header-title {
   color: #00b1b3;
+}
+
+.tags_links {
+  list-style-type: none;
 }
 
 .task-notes {
@@ -482,6 +487,15 @@ h1 {
     opacity: 0;
     display: none;
   }
+}
+
+.select_field {
+  background-color: white;
+  border: 2px solid #00b1b3;
+}
+
+.select_field option {
+  color: #00b1b3;
 }
 
 .pagination {

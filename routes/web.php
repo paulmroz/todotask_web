@@ -26,11 +26,15 @@ Route::post('/tasks/{task}/notes', 'NotesController@store');
 Route::post('/tasks/{task}/edit', 'TaskController@edit');
 Route::patch('/tasks/{task}', 'TaskController@update');
 
+Route::get('/tasks/tags/{tag}','TagController@index');
+
 Route::get('/contact', 'ContactController@create');
 Route::post('/contact', 'ContactController@sendEmail');
 
 Route::get('/gallery', 'PhotoController@create');
 Route::get('/gallery/manage', 'PhotoController@index');
 Route::post('/gallery', 'PhotoController@store');
-
 Route::delete('/gallery/{photo}', 'PhotoController@destroy');
+
+Route::get('/tags','TagController@create');
+Route::post('/tags','TagController@store');

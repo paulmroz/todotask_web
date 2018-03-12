@@ -243,7 +243,7 @@ main > form {
     margin-left:2em;
 }
 
-.tasks-column h3,p,h1 {
+.tasks-column h3,p,h1,h2 {
     color:#7C7C7C;
     margin-bottom:.5em;
     
@@ -259,6 +259,10 @@ main > form {
 
 .header-title {
     color:#00b1b3;
+}
+
+.tags_links {
+  list-style-type: none
 }
 
 .task-notes{
@@ -318,9 +322,18 @@ main > form {
     animation: flash-message 10s forwards;
 }
 
+
 @keyframes flash-message {
     0%   {opacity: 1;}
     100% {opacity: 0; display:none;}
+}
+
+.select_field {
+  background-color:white;
+  border:2px solid #00b1b3;
+  option {
+    color:#00b1b3;
+  }
 }
 
 .pagination {
