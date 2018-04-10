@@ -311,6 +311,17 @@ main {
   margin-top: 0.5em;
 }
 
+.user_button a {
+  text-decoration: none;
+  color: #00b1b3;
+}
+
+.user_button a:hover {
+  text-decoration: none;
+  background: #00b1b3;
+  color: white;
+}
+
 .user_button.manage {
   text-decoration: none;
   display: -webkit-box;

@@ -1,7 +1,7 @@
  @extends('layouts.master')
 
  @section('content')
-
+   
     <form class="box"  method="POST" action="{{ route('register') }}">
                 {{ csrf_field() }}
 
@@ -35,12 +35,12 @@
                          <input id="password-confirm" type="password" class="control-field" name="password_confirmation" required placeholder="Password Confirm"> 
                     </div>
                     
-                     <button type="submit" class="user_button">
+                    <button type="submit" class="user_button">
                          Register
                     </button>
 
                     @include('layouts.error')
 
               
-            </form>
+        </form>
  @endsection

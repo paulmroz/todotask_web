@@ -26,14 +26,19 @@
                     </label>
                 </div>
 
-                 <button type="submit" class="user_button">
+                <button type="submit" class="user_button">
                      Login
                 </button>
-
                 <a class="btn-link" href="{{ route('password.request') }}">
                    Forgot Your Password?
-                 </a>
+                </a>
+                <button class="user_button">
+                     <a href="auth/github">Zaloguj się przez Github</a>
+                 </button>
+
+                
 
                  @include('layouts.error')
             </form>
+
  @endsection
