@@ -16,19 +16,27 @@
 	<div class="tasks-column">
 		@foreach($tasks as $task)
 		<div class="single-task">
-			<h3><a href="/tasks/{{$task->id}}">{{$task->title}}</a></h3>
-			<p>{{$task->body}}</p>
+			<h3><a id="task_{{$task->id}}" href="/tasks/{{$task->id}}">{{$task->title}}</a></h3>
+			<p id="task_body_{{$task->id}}" class="body_edit_value">{{$task->body}}</p>
 			@auth
 			<div class="task-buttons">
-				<form method="POST" action="/tasks/{{$task->id}}/edit">
+
+				<form method="POST" action="/tasks/{{$task->id}}">	
 					{{ csrf_field() }}
-					<button class="update-button" type="delete">Update</button>	
+					<input type="text" name="title" value="{{$task->title}}">
+					<input type="text" name="body" value="{{$task->body}}">
+					<input type="hidden" name="id" value="{{$task->id}}">
+
+					<input type="button" class="update-button"  data-id="{{$task->id}}" value="Update">	
+					<input type="button" class="delete-button"  data-id="{{$task->id}}" value="Delete">
 				</form>
-				<form method="POST" action="/tasks/{{$task->id}}">
+				{{-- <button class="update-button" type="delete" data-id="{{$task->id}}">Update</button>	 --}}
+
+				{{-- <form method="POST" action="/tasks/{{$task->id}}">
 					{{ csrf_field() }}
 	                {{ method_field('DELETE')}}
 					<button class="delete-button" type="delete">Delete</button>	
-				</form>
+				</form> --}}
 			</div>
 			@endauth
 		</div>	
@@ -36,5 +44,6 @@
 		{{$tasks->appends(Request::except('page'))->links()}}
 	</div>
 </div>
+
 @include('layouts.sidebar')
 @endsection

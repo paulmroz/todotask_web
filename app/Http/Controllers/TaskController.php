@@ -87,15 +87,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        if($task->user_id === auth()->id()){
-
-            $task = Task::find($task->id);
-
-            return view('task.edit', compact('task'));
-
-        }
-
-        return redirect()->back();
+        
     }
 
     /**
@@ -105,19 +97,20 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
-    {
-        request()->validate([
-            'title' => 'required',
-            'body' => 'required'
-        ]);
+    public function update(Task $task)
+    {   
+        if(strlen(request('title')) < 6 || strlen(request('body')) < 6){
+            return redirect()->back();
+        }
         $task->title = request('title');
         $task->body = request('body');
         $task->save();
-        session()->flash('message', 'Task updated successfully.');
-        return redirect('/tasks');
 
-
+        return response()->json([
+            'status' => 'success',
+            'title' => $task->title,
+            'body' =>  $task->body,
+        ]);
     }
 
     /**
@@ -128,9 +121,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {   
-
-        //Task::where('user_id')
-
         if ($task->user_id === auth()->id())  {
 
             $task->find($task->id);

@@ -76,33 +76,33 @@ module.exports = __webpack_require__(2);
 /***/ (function(module, exports) {
 
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-/*
-require('./bootstrap');
-
-window.Vue = require('vue');*/
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-/*Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
-});*/
+$.ajaxSetup({
+	headers: {
+		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
+});
 
 $(document).ready(function () {
-  $('.menu').click(function (e) {
-    e.stopPropagation();
-    $('#main_nav').toggleClass('active');
-  });
+	$('.update-button').on('click', function (event) {
+		event.preventDefault();
+		var form = $(this).parent();
+		var urlAction = form.attr('action');
+		var datastring = form.serialize();
+		var task_id = $(this).attr("data-id");
+		$.ajax({
+			type: "PATCH",
+			url: urlAction,
+			data: datastring,
+			dataType: "json",
+			success: function success(data) {
+				$('#task_' + task_id).html(data.title);
+				$('#task_body_' + task_id).html(data.body);
+			},
+			error: function error() {
+				alert("Update fields can't be blank and must have at least 6 characters!!. Please check the fields");
+			}
+		});
+	});
 });
 
 /***/ }),

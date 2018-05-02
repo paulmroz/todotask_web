@@ -23,7 +23,9 @@ Route::post('/tasks', 'TaskController@store');
 Route::delete('/tasks/{task}', 'TaskController@destroy');
 Route::get('/tasks/{task}', 'TaskController@show');
 Route::post('/tasks/{task}/notes', 'NotesController@store');
-Route::post('/tasks/{task}/edit', 'TaskController@edit');
+
+//Route::post('/tasks/{task}/edit', 'TaskController@edit');
+
 Route::patch('/tasks/{task}', 'TaskController@update');
 
 Route::get('/tasks/tags/{tag}','TagController@index');
