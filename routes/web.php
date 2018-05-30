@@ -2,6 +2,7 @@
 
 
 Route::get('/', function () {
+	
 	$photos = \App\Photo::take(4)->get();
     return view('welcome', compact('photos'));
 

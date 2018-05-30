@@ -19,8 +19,17 @@ class AppServiceProvider extends ServiceProvider
 
             /*$tags =  \App\Tag::has('tasks')->pluck('name');*/
 
-            $tags =  \App\Task::where('user_id',auth()->id())->has('tags')->with('tags')->get();
-          
+            //$tags =  \App\Task::where('user_id',auth()->id())->has('tags')->with('tags')->get();
+            $tags_names = \App\Task::where('user_id', auth()->id())->has('tags')->with('tags')->get();
+            $tags_with_dupliaction = [];
+            foreach ($tags_names as $tag) {
+                $tagname = $tag->tags->pluck('name');
+               // var_dump($tagname);
+                foreach ($tagname as $name) {
+                    $tags_with_dupliaction [] = $name;
+                }
+            }
+            $tags = array_count_values($tags_with_dupliaction);
             $view->with(compact('archives', 'tags'));
     
         });

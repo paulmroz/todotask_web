@@ -28,30 +28,42 @@ class AddTaskForm extends FormRequest
     public function rules()
     {
         return [
-        'title'=> 'required|min:5|max:200',
+        'title'=> 'required|min:1|max:200',
         'body' => 'required',
         ];
     }
 
     public function persist()
     {  
+
+       //$tags = str_replace('#', '', request('tags'));
+       $tags = request('tags');
+       //$tag_array = explode(',', $tags);
+       $tag_array = preg_split('/\s*(,|\.|#)\s*/', $tags);
+       //die();
+       //dd($tag_array);
+
         $task = Task::create([
             'title'=> request('title'),
             'body' => request('body'),
             'user_id'=> auth()->id()
         ]);
 
-        $tag_first = Tag::where('name', request('tag_first'))->first();
-        $tag_second = Tag::where('name', request('tag_second'))->first();
-        $tag_third = Tag::where('name', request('tag_third'))->first();
+        if($tag_array[0]=='') return;
+        
+        foreach ($tag_array as $tag) {
+            $singleTag = Tag::firstOrNew(['name' => $tag]);
+            if($singleTag->exists) continue;
 
-        try{
-            $task->tags()->attach($tag_first);
-            $task->tags()->attach($tag_second);
-            $task->tags()->attach($tag_third);
-        }catch (\Illuminate\Database\QueryException $e){
-            
+            $singleTag->fill([
+                'name' => $tag,
+            ])->save();
         }
 
+        foreach ($tag_array as $tag) {
+            $tag_id = Tag::where('name', $tag)->first();
+            $task->tags()->attach($tag_id->id);
+            //var_dump($tag_id->id);
+        }
     }
 }

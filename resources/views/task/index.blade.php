@@ -19,9 +19,9 @@
 		
 			{{--TASK VIEW--}}
 			<div class="single_task_{{$task->id}}">
-				<h3><a href="tasks/{{$task->id}}">Title:</a></h3>
+				<h3><a href="/tasks/{{$task->id}}">Title:</a></h3>
 				<p id="task_title_{{$task->id}}">{{$task->title}}</p>
-				<h4><a href="tasks/{{$task->id}}">Description:</a></h4>
+				<h4><a href="/tasks/{{$task->id}}">Description:</a></h4>
 				<p  id="task_desc_{{$task->id}}">{{$task->body}}</p>
 			</div>
 

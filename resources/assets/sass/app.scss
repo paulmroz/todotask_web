@@ -271,7 +271,9 @@ main > form {
 }
 
 .tags_links {
-  list-style-type: none
+  list-style-type: none;
+  padding:0.5em;
+  color:black;
 }
 
 .task-notes{
@@ -289,11 +291,13 @@ main > form {
 } 
 .sidebar-column {
     margin:2em auto;
+    width:20%;
     h3 {
        color: #fff;
     }
     .archives{
         align-items:center;
+
         & a {
             text-decoration:none;
             color:#7C7C7C;
@@ -301,6 +305,11 @@ main > form {
     }
 }
 
+.all_tags{
+  width:100%;
+  display:flex;
+  
+}
 
 .updateForm{
   display: none;

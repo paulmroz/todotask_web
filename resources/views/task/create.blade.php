@@ -17,26 +17,9 @@
 
 
 	<label class="filed_title_text">Tag:</label>
+	<p>Add tags separated by coma (',') or dot ('.') e.g: 'cats,dogs,house...'</p>
 	<div class="log_in_fields has-addon{{ $errors->has('tag') ? ' has-error' : '' }}">
-		<select class="control-field select_field" name='tag_first'>
-			<option></option>	
-			@foreach($tags as $tag)
-					<option>{{$tag->name}}</option>
-
-			@endforeach
-		</select>
-		<select class="control-field select_field" name='tag_second'>
-			<option></option>	
-			@foreach($tags as $tag)
-					<option>{{$tag->name}}</option>	
-			@endforeach
-		</select> 
-		<select class="control-field select_field" name='tag_third'>
-			<option></option>	
-			@foreach($tags as $tag)
-					<option>{{$tag->name}}</option>	
-			@endforeach
-		</select> 
+		<input type="text" name="tags" class="control-field">
 	</div> 
 
 	

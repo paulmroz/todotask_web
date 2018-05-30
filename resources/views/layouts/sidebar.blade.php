@@ -6,22 +6,11 @@
 				{{ $archive->month.' '. $archive->year}}
 			</a></p>
 		@endforeach
-		<h3>Tags:</h3>
-		@foreach($tags as $tag)
-			<p><a href="/tasks/tags/<?php $name = $tag->tags->pluck('name');
-					$name = trim($name,'[]""');
-					echo $name;
-				?>">
-
-				#<?php $name = $tag->tags->pluck('name');
-					$name = trim($name,'[]""');
-					echo $name;
-				?>
-			</a></p>
-		@endforeach
-
-		 {{--  foreach ($tags as $tag) {
-              return $name = $tag->tags->pluck('name');
-            } --}}
+		<h3>Your all tags:</h3>
+		<div class="all_tags">
+			@foreach($tags as $tag => $number)
+				<a href="/tasks/tags/{{$tag}}">#{{$tag}}({{$number}})</a>
+			@endforeach 
+		</div>
 	</div>
 </div>

@@ -63,9 +63,9 @@ class TaskController extends Controller
             return 'nie można';
         } */
 
-            session()->flash('message','Task added');
+        session()->flash('message','Task added');
 
-            return redirect('/tasks');
+        return redirect('/tasks');
     }
 
     /**
@@ -75,8 +75,9 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Task $task)
-    {
-         return view('task.show', compact('task'));
+    {   
+
+        return view('task.show', compact('task'));
     }
 
     /**
@@ -126,10 +127,11 @@ class TaskController extends Controller
             $task->find($task->id);
 
             $task->notes()->delete();
+            $task->tags()->delete();
+            $task->is_deleted = 1;
+            $task->save();
 
-            $task->delete();
-
-            session()->flash('message', 'Your post has been successfully deleted');
+            session()->flash('message', 'Your task has been successfully deleted');
         }
 
         return redirect()->back();
