@@ -45,7 +45,7 @@ class LoginController extends Controller
      */
     public function redirectToProvider()
     {   
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver('github')->stateless()->redirect();
     }
 
     /**
@@ -56,7 +56,7 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = $this->findOrCreateGitHubUser(
-            Socialite::driver('github')->user()
+            Socialite::driver('github')->stateless()->user()
         );
 
         auth()->login($user);
@@ -72,7 +72,7 @@ class LoginController extends Controller
 
         $user->fill([
             'name' => $githubUser->nickname,
-            'email'=>$githubUser->email
+            'email'=> $githubUser->email
         ])->save();
 
         return $user;

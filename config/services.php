@@ -35,8 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'github' => [
-        'client_id' => env('GIT_CLIENT_ID'),         // Your FB Client ID
-        'client_secret' => env('GIT_CLIENT_SECRET'), // Your FB Client Secret
+        'client_id' => env('GIT_CLIENT_ID'),         // Your GIT Client ID
+        'client_secret' => env('GIT_CLIENT_SECRET'), // Your GIT Client Secret
         'redirect' => env('GIT_CALLBACK_URL'),
     ],
 
