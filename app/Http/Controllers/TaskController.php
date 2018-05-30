@@ -104,7 +104,7 @@ class TaskController extends Controller
         }
         $task->title = request('title');
         $task->body = request('body');
-        $task->save();
+        $task->save();  
 
         return response()->json([
             'status' => 'success',

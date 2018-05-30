@@ -60,12 +60,6 @@ nav {
   color: #006666;
 }
 
-.edit-input {
-  border-radius: 10px;
-  padding: 1em;
-  margin: 0.5em 0 0.5em 0;
-}
-
 footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -382,22 +376,20 @@ main > form {
   margin-left: 2em;
 }
 
-.tasks-column h3,
-p,
-h1,
-h2 {
-  color: #7C7C7C;
-  margin-bottom: .5em;
-}
+/* .tasks-column h3,p,h1,h2 {
+    color:#7C7C7C;
+    margin-bottom:.5em;
+    
+} */
 
-.tasks-column a {
-  text-decoration: none;
-  color: #7C7C7C;
+/* .tasks-column a {
+    text-decoration:none;
+    color:#7C7C7C;
 }
 
 .single-task {
-  padding: 1em 0;
-}
+    padding:1em 0;
+} */
 
 .header-title {
   color: #00b1b3;
@@ -417,6 +409,10 @@ h2 {
           flex-direction: column;
 }
 
+.task-notes h2 {
+  color: white;
+}
+
 .note-body {
   color: #7C7C7C;
   padding-top: 0.5em;
@@ -428,7 +424,7 @@ h2 {
 }
 
 .sidebar-column h3 {
-  color: #00b1b3;
+  color: #fff;
 }
 
 .sidebar-column .archives {
@@ -442,34 +438,8 @@ h2 {
   color: #7C7C7C;
 }
 
-.task-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.task-buttons form:not(:first-child) {
-  margin-left: 1em;
-}
-
-.task-buttons button {
-  padding: 0.1em .8em;
-  font-weight: bold;
-  color: #00b1b3;
-  background-color: white;
-  border: 1px solid #00b1b3;
-}
-
-.task-buttons button.delete-button {
-  color: #B90000;
-}
-
-.task-buttons button:hover {
-  background-color: #DDDDDD;
+.updateForm {
+  display: none;
 }
 
 #flash-message {
@@ -737,12 +707,12 @@ h2 {
   cursor: pointer;
 }
 
-button.close {
+/* button.close {
   padding: 0;
   background-color: transparent;
   border: 0;
   -webkit-appearance: none;
-}
+} */
 
 .btn-primary {
   color: #fff;
@@ -750,18 +720,61 @@ button.close {
   border-color: #00b1b3;
 }
 
-.form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.updateForm input {
+  padding: .8em;
+  width: 97.5%;
+  border: 1px solid #DDD;
 }
 
-.edit-task-body {
-  max-width: 100%;
-  min-width: 100%;
+h2,
+h3,
+h4 {
+  padding: 0.5em;
+  color: #fff;
+  cursor: default;
+  background-color: #3AB;
+  border-color: #337ab7;
+  border-radius: 5px;
+}
+
+input[type=text] {
+  font-size: 17px;
+}
+
+p {
+  border: 1px solid #DDD;
+  padding: 1em;
+}
+
+hr {
+  padding: .2em;
+  border: none;
+}
+
+button {
+  margin-top: 1em;
+  padding: .3em 1em;
+  border-radius: 5px;
+  border: 1px solid   #DDD;
+  background: #fff;
+  color: #337ab7;
+  font-size: 18px;
+}
+
+.toggle_edit_form {
+  max-width: 20%;
+}
+
+.deleteButton {
+  width: 20%;
+}
+
+button:hover {
+  background-color: #eee;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 

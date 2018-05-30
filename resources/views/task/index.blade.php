@@ -13,33 +13,40 @@
 	
 	<h1 class="header-title">Your all added Tasks.</h1>
 	<hr>
+
 	<div class="tasks-column">
 		@foreach($tasks as $task)
-		<div class="single-task">
-			<h3><a id="task_{{$task->id}}" href="/tasks/{{$task->id}}">{{$task->title}}</a></h3>
-			<p id="task_body_{{$task->id}}" class="body_edit_value">{{$task->body}}</p>
-			@auth
-			<div class="task-buttons">
-
-				<form method="POST" action="/tasks/{{$task->id}}">	
-					{{ csrf_field() }}
-					<input type="text" name="title" value="{{$task->title}}">
-					<input type="text" name="body" value="{{$task->body}}">
-					<input type="hidden" name="id" value="{{$task->id}}">
-
-					<input type="button" class="update-button"  data-id="{{$task->id}}" value="Update">	
-					<input type="button" class="delete-button"  data-id="{{$task->id}}" value="Delete">
-				</form>
-				{{-- <button class="update-button" type="delete" data-id="{{$task->id}}">Update</button>	 --}}
-
-				{{-- <form method="POST" action="/tasks/{{$task->id}}">
-					{{ csrf_field() }}
-	                {{ method_field('DELETE')}}
-					<button class="delete-button" type="delete">Delete</button>	
-				</form> --}}
+		
+			{{--TASK VIEW--}}
+			<div class="single_task_{{$task->id}}">
+				<h3><a href="tasks/{{$task->id}}">Title:</a></h3>
+				<p id="task_title_{{$task->id}}">{{$task->title}}</p>
+				<h4><a href="tasks/{{$task->id}}">Description:</a></h4>
+				<p  id="task_desc_{{$task->id}}">{{$task->body}}</p>
 			</div>
-			@endauth
-		</div>	
+
+			{{-- UPDATE FORM --}}
+			<form method="POST" action="tasks/{{$task->id}}" class="form_number_{{$task->id}} updateForm">
+				{{ csrf_field() }}
+				<h3>Title:</h3>
+				<input type="text" name="title" value="{{$task->title}}">
+				<h4>Description:</h4>
+				<input type="text" name="body" value="{{$task->body}}">
+				<input type="hidden" name="id" value="{{$task->id}}">	
+				<button type="submit" class="updateButton" data-id="{{$task->id}}">SAVE</button>
+			</form>	
+
+			{{-- EDIT BUTTON --}}
+			<button class="edit_button_{{$task->id}} toggle_edit_form" data-id="{{$task->id}}">EDIT</button>
+
+			{{-- DELETE BUTTON --}}
+			<form method="POST" action="tasks/{{$task->id}}"">
+				{{ csrf_field() }}
+				{{method_field('DELETE')}}
+				<input type="hidden" name="id" value="{{$task->id}}">
+				<button type="submit" class="deleteButton" data-id="{{$task->id}}">DELETE</button>
+			</form>
+			<hr>
 		@endforeach
 		{{$tasks->appends(Request::except('page'))->links()}}
 	</div>
