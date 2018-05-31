@@ -423,7 +423,6 @@ main > form {
 
 .sidebar-column {
   margin: 2em auto;
-  width: 20%;
 }
 
 .sidebar-column h3 {
@@ -442,10 +441,15 @@ main > form {
 }
 
 .all_tags {
-  width: 100%;
+  max-width: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  word-wrap: break-word;
 }
 
 .updateForm {

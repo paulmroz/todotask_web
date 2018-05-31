@@ -291,7 +291,6 @@ main > form {
 } 
 .sidebar-column {
     margin:2em auto;
-    width:20%;
     h3 {
        color: #fff;
     }
@@ -304,11 +303,14 @@ main > form {
         }
     }
 }
-
 .all_tags{
-  width:100%;
+  max-width:200px;
   display:flex;
-  
+  flex-direction:column;
+  word-wrap: break-word;
+}
+.all_tags p {
+
 }
 
 .updateForm{
