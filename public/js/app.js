@@ -137,6 +137,50 @@ $(document).ready(function () {
  		}
  	})
  	});*/
+
+	var triggers = document.querySelectorAll('.cool > li');
+	var background = document.querySelector('.dropdownBackground');
+	var nav = document.querySelector('.top');
+
+	function handleEnter() {
+		var _this = this;
+
+		this.classList.add('trigger-enter');
+		setTimeout(function () {
+			if (_this.classList.contains('trigger-enter')) {
+				_this.classList.add('trigger-enter-active');
+			}
+		}, 150);
+		background.classList.add('open');
+
+		var dropdown = this.querySelector('.dropdown');
+		var dropdownCoords = dropdown.getBoundingClientRect();
+		var navCoords = nav.getBoundingClientRect();
+
+		var coords = {
+			height: dropdownCoords.height,
+			width: dropdownCoords.width,
+			top: dropdownCoords.top - navCoords.top - 25,
+			left: dropdownCoords.left - navCoords.left - 20
+		};
+
+		background.style.setProperty('width', coords.width + 'px');
+		background.style.setProperty('height', coords.height + 'px');
+		background.style.setProperty('transform', 'translate(' + coords.left + 'px, ' + coords.top + 'px)');
+	}
+
+	function handleLeave() {
+		this.classList.remove('trigger-enter-active');
+		this.classList.remove('trigger-enter');
+		background.classList.remove('open');
+	}
+
+	triggers.forEach(function (trigger) {
+		return trigger.addEventListener('mouseenter', handleEnter);
+	});
+	triggers.forEach(function (trigger) {
+		return trigger.addEventListener('mouseleave', handleLeave);
+	});
 });
 
 /***/ }),

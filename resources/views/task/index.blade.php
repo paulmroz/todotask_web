@@ -33,18 +33,21 @@
 				<h4>Description:</h4>
 				<input type="text" name="body" value="{{$task->body}}">
 				<input type="hidden" name="id" value="{{$task->id}}">	
-				<button type="submit" class="updateButton" data-id="{{$task->id}}">SAVE</button>
+				<button type="submit" class="updateButton" data-id="{{$task->id}}">SAVE <i class="fas fa-save"></i></button>
 			</form>	
 
 			{{-- EDIT BUTTON --}}
-			<button class="edit_button_{{$task->id}} toggle_edit_form" data-id="{{$task->id}}">EDIT</button>
+			<button class="edit_button_{{$task->id}} toggle_edit_form" data-id="{{$task->id}}">
+				EDIT 
+				<i class="fas fa-pencil-alt"></i>
+			</button>
 
 			{{-- DELETE BUTTON --}}
 			<form method="POST" action="tasks/{{$task->id}}"">
 				{{ csrf_field() }}
 				{{method_field('DELETE')}}
 				<input type="hidden" name="id" value="{{$task->id}}">
-				<button type="submit" class="deleteButton" data-id="{{$task->id}}">DELETE</button>
+				<button type="submit" class="deleteButton" data-id="{{$task->id}}">DELETE <i class="fas fa-trash-alt"></i></button>
 			</form>
 			<hr>
 		@endforeach
