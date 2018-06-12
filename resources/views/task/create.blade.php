@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
 <form class="box" method="POST" action="/tasks">
 	{{ csrf_field() }}
 
@@ -22,14 +23,11 @@
 		<input type="text" name="tags" class="control-field">
 	</div> 
 
-	
-
 	<button type="submit" class="user_button">
 		Add Task
 	</button>
 
 	{{-- @include('layouts.error') --}}
-
 
 </form>
 @endsection

@@ -7,7 +7,9 @@
 @section('content')
 <div class="box-main-content">
 @auth
-	<a href="/gallery/manage" class="user_button manage">Click -> to manage the gallery</a>
+	<a href="/gallery/manage" class="user_button manage">Click here to manage the gallery</a>
+	<br>
+	<h3>You can only delete photo's added by you!.</h3>
 @endauth	
 <div class="main_photo">
         <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs" data-loop="true">

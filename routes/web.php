@@ -44,3 +44,6 @@ Route::post('/tags','TagController@store');
 
 Route::get('auth/github', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/github/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('profile','UserController@index');
+Route::post('profile','UserController@update');

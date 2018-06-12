@@ -65,14 +65,16 @@ class LoginController extends Controller
     }
 
     protected function findOrCreateGitHubUser($githubUser)
-    {
+    {   
+        //dd($githubUser->user['avatar_url']);
         $user = User::firstOrNew(['github_id' => $githubUser->id]);
 
         if($user->exists) return $user;
 
         $user->fill([
             'name' => $githubUser->nickname,
-            'email'=> $githubUser->email
+            'email'=> $githubUser->email,    
+            'avatar' => $githubUser->user['avatar_url']
         ])->save();
 
         return $user;

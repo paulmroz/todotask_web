@@ -4,34 +4,6 @@
 
 @if (Route::has('login'))
 <header>
-	{{-- <a href="#" class="menu"><i class="fas fa-bars"></i></a> --}}
-{{-- 	<nav id="main_nav">
-		<div class="nav-left">
-			<a href="{{ url('/') }}" class="nav-item">
-				<i class="fa fa-home" aria-hidden="true">	 
-				</i> 		
-				Home		
-			</a>
-			@auth
-			<a href="/tasks" class="nav-item">My Tasks</a>
-			<a href="/tasks/create" class="nav-item">Add task</a>
-			@endauth
-			<a href="/contact" class="nav-item">Contact</a>
-			<a href="/gallery" class="nav-item">Gallery</a>
-		</div>
-		<div class="nav-left">
-			@if(!Auth::check())
-			<a href="{{ route('login') }}" class="nav-item">Login</a>
-			<a href="{{ route('register') }}" class="nav-item">Register</a>
-			@endif
-
-			@auth
-			<a href="{{ route('logout') }}" class="nav-item">Logout</a>
-			@endauth
-			
-		</div>
-	</nav> --}}
-
 	<nav class="top">
 
 		<ul class="nav_links">
@@ -55,21 +27,27 @@
 				@endif
 			</li>
 		</ul>
+		
+		@auth
 		<div class="dropdownBackground">
 			<span class="arrow"></span>
 		</div>
-		@auth
 		<ul class="cool">
 			<li>
 				<a href="#">Menu <i class="fas fa-chevron-circle-down"></i></a>
 				<ul class="dropdown dropdown2">
+					<li><a href="/profile" class="button">Profile <i class="fas fa-user"></i></a></li>
 					<li><a href="/tasks" class="button">My Tasks <i class="fas fa-eye"></i></a></li>
 					<li><a href="/tasks/create" class="button">Add task <i class="fas fa-plus"></i></a></li>
 					<li><a href="{{ route('logout') }}" class="button">Logout <i class="fas fa-sign-out-alt"></i></a></li>
          			{{-- <li><a class="button" href="http://twitter.com/wesbos">Twitter</a></li>--}}
       			</ul>
   			</li>
+  			<div class="avatar">
+				<img src="/storage/avatars/{{\Auth::user()->avatar}}">
+			</div>
 		</ul>
+		
 		@endauth
 </nav>
 </header>

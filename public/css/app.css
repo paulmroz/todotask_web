@@ -84,6 +84,7 @@ nav ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  z-index: 9;
 }
 
 .dropdown {
@@ -100,14 +101,17 @@ nav ul {
   will-change: opacity;
   display: none;
   width: 150%;
+  z-index: 9;
 }
 
 .trigger-enter .dropdown {
   display: block;
+  z-index: 9;
 }
 
 .trigger-enter-active .dropdown {
   opacity: 1;
+  z-index: 9;
 }
 
 .dropdownBackground {
@@ -131,10 +135,16 @@ nav ul {
       -ms-flex-pack: center;
           justify-content: center;
   opacity: 0;
+  z-index: 9;
+}
+
+.fotorama__img {
+  z-index: 1;
 }
 
 .dropdownBackground.open {
   opacity: 1;
+  z-index: 9;
 }
 
 .arrow {
@@ -179,6 +189,7 @@ nav ul {
 .dropdown a {
   text-decoration: none;
   color: #ffc600;
+  z-index: 9;
 }
 
 a.button {
@@ -189,6 +200,16 @@ a.button {
   margin-bottom: 10px;
   width: 100%;
   text-align: center;
+}
+
+.avatar img {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-top: 10px;
+  border: 4px solid #FFF;
 }
 
 /* Matches Twitter, TWITTER, twitter, tWitter, TWiTTeR... */
@@ -763,35 +784,31 @@ main > form {
   border-bottom-right-radius: 3px;
 }
 
-@media only screen and (max-width: 768px) {
-  #main_nav {
-    display: none;
-  }
-
-  #main_nav.active {
-    display: block;
-    width: 100%;
-  }
-
-  #main_nav.active a {
-    display: block;
-    padding: 1em 0;
-    border-bottom: 1px solid grey;
-  }
-
-  #main_nav.active a:last-child {
-    border-bottom: none;
-  }
-
-  .menu {
-    display: block;
-    background-color: #00b1b3;
-    padding: 0.6em;
-    width: 100%;
-    font-size: 2em;
-    color: white;
-  }
-}
+/* @media only screen and (max-width: 768px){
+    #main_nav {
+      display:none;
+    }
+    #main_nav.active {
+      display:block;
+      width:100%;
+      a{
+        display:block;
+        padding:1em 0;
+        border-bottom:1px solid grey;
+        &:last-child{
+          border-bottom:none;
+        }
+      }
+    }
+    .menu {
+      display:block;
+      background-color:#00b1b3;
+      padding:0.6em;
+      width:100%;
+      font-size:2em;
+      color:white;
+    } 
+  } */
 
 .btn {
   display: inline-block;
