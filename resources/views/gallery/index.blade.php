@@ -19,7 +19,7 @@
         </div>
  </div>
 
-
+<br>
 @auth
 <form class="box" method="POST" action="/gallery" enctype="multipart/form-data">
 	{{ csrf_field() }}

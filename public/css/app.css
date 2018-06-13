@@ -101,17 +101,15 @@ nav ul {
   will-change: opacity;
   display: none;
   width: 150%;
-  z-index: 9;
+  z-index: 99;
 }
 
 .trigger-enter .dropdown {
   display: block;
-  z-index: 9;
 }
 
 .trigger-enter-active .dropdown {
   opacity: 1;
-  z-index: 9;
 }
 
 .dropdownBackground {
@@ -135,16 +133,10 @@ nav ul {
       -ms-flex-pack: center;
           justify-content: center;
   opacity: 0;
-  z-index: 9;
-}
-
-.fotorama__img {
-  z-index: 1;
 }
 
 .dropdownBackground.open {
   opacity: 1;
-  z-index: 9;
 }
 
 .arrow {
@@ -189,7 +181,6 @@ nav ul {
 .dropdown a {
   text-decoration: none;
   color: #ffc600;
-  z-index: 9;
 }
 
 a.button {
@@ -286,7 +277,7 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
-  padding-top: 1em;
+  padding-top: 4em;
 }
 
 .main_photo img {
@@ -337,6 +328,8 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-right: 1em;
+  margin-top: 1em;
 }
 
 .main_photo img:hover {
@@ -808,7 +801,7 @@ main > form {
       font-size:2em;
       color:white;
     } 
-  } */
+    } */
 
 .btn {
   display: inline-block;
