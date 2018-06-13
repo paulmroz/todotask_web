@@ -42,8 +42,9 @@ Route::delete('/gallery/{photo}', 'PhotoController@destroy');
 Route::get('/tags','TagController@create');
 Route::post('/tags','TagController@store');
 
-Route::get('auth/github', 'Auth\LoginController@redirectToProvider');
-Route::get('auth/github/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/auth/github', 'Auth\LoginController@redirectToProvider');
+Route::get('/auth/github/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('profile','UserController@index');
-Route::post('profile','UserController@update');
+Route::get('/profile','UserController@index');
+Route::post('/profile','UserController@updateAvatar');
+Route::post('/profile/password/reset','UserController@updatePassword');

@@ -14,12 +14,16 @@ class UserController extends Controller
     	return view('profile.index', compact('user'));
     }
 
-    public function update(Request $request)
+    public function updateAvatar(Request $request)
     {	
         if(!$request->hasFile('avatar'))
         {
             return redirect()->back();
         }
+        request()->validate([
+            'avatar' => 'mimes:jpeg,bmp,png'
+        ]);
+
     	$file = $request->file('avatar');
         $ext = $file->extension();
         $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
@@ -38,5 +42,24 @@ class UserController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function updatePassword(Request $request)
+    {   
+        $user = \Auth::user();
+        request()->validate([
+            'password' => 'required|min:6|confirmed',
+            'password_old' => 'required|min:6'
+        ]);
+
+        if (!\Hash::check(request()->password_old, $user->password))
+        {
+            return back();
+        }
+
+        $user->password = bcrypt(request()->password);
+        $user->save();
+
+        return back();
     }
 }
