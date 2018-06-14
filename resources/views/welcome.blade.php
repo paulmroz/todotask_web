@@ -21,13 +21,11 @@
         </div>
         
         <div class="main_photo">
-         
-        <div class="fotorama" data-autoplay="true">
-            @foreach($photos as $photo)
-                <img src="storage/photos/{{$photo->photo}}">
-            @endforeach
-        </div>
-
+            <div class="fotorama" data-autoplay="true">
+                @foreach($photos as $photo)
+                    <img src="storage/photos/{{$photo->photo}}">
+                @endforeach
+            </div>
         </div>
 </div>
 @endsection

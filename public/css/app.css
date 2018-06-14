@@ -278,6 +278,12 @@ main {
           flex-direction: column;
   text-align: center;
   padding-top: 4em;
+  margin: 0 auto;
+}
+
+.fotorama {
+  width: 600px;
+  margin: 0 auto;
 }
 
 .main_photo img {

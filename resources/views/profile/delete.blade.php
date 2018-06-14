@@ -9,6 +9,7 @@
 	<div class="delete_account_buttons">	
 		<form method="post" action="/profile/destroy" >
 			{{ csrf_field() }}
+			{{ method_field('DELETE')}}
 			<button type="submit" class="user_button">
 				Yes
 			</button>

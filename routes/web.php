@@ -50,4 +50,4 @@ Route::post('/profile','UserController@updateAvatar');
 Route::post('/profile/password/reset','UserController@updatePassword');
 
 Route::get('/profile/destroy','UserController@deletePassword');
-Route::post('/profile/destroy','UserController@destroyPassword');
+Route::delete('/profile/destroy','UserController@destroyPassword');
