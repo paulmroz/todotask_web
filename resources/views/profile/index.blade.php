@@ -36,5 +36,18 @@
 			Change Password
 		</button>
 	</form>
+	<br>
+	<h2><label>Delete Account:</label></h2>
+
+	<br>
+	<button type="submit" class="user_button">
+		<a href="profile/destroy">Delete account</a>
+	</button>
+
 </div>
+@if($flash = session('message'))
+<div id="flash-message">
+	{{$flash}}
+</div>
+@endif
 @endsection

@@ -6,6 +6,7 @@
 				{{ $archive->month.' '. $archive->year}}
 			</a></p>
 		@endforeach
+		<br>
 		<h3>Your all tags <i class="fas fa-tags"></i></h3>
 		<div class="all_tags">
 			@foreach($tags as $tag => $number)

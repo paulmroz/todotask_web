@@ -28,8 +28,8 @@ class AddTaskForm extends FormRequest
     public function rules()
     {
         return [
-        'title'=> 'required|min:1|max:200',
-        'body' => 'required',
+        'title'=> 'required|min:6|max:200',
+        'body' => 'required|min:6',
         ];
     }
 

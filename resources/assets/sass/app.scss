@@ -749,4 +749,16 @@ a{
   color:white;
 }
 
+.delete_account_buttons{
+  display:flex;
+  flex-direction: row;
+}
+
+.delete_account_buttons button 
+{
+  margin-right:1em;
+  min-width:5em;
+  display:inline-block;
+}
+
 

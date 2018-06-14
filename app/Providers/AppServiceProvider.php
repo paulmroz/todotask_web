@@ -31,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
             }
             asort($tags_with_dupliaction);
             $tags = array_count_values($tags_with_dupliaction);
+
+            
             $view->with(compact('archives', 'tags'));
     
         });

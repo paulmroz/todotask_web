@@ -8,6 +8,12 @@ use Image;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
     	$user = \Auth::user();
@@ -40,6 +46,8 @@ class UserController extends Controller
         $user->avatar = $fileNameToStore;
         $user->save();
 
+        session()->flash('message','Avatar changed');
+
         return redirect()->back();
 
     }
@@ -59,7 +67,23 @@ class UserController extends Controller
 
         $user->password = bcrypt(request()->password);
         $user->save();
-
+        session()->flash('message','Password changed');
         return back();
     }
+
+    public function deletePassword()
+    {   
+        $user = \Auth::user();
+        return view('profile.delete',compact('user'));
+    }
+
+    public function destroyPassword()
+    {   
+        $user = \Auth::user();
+        $user->is_deleted = 1;
+        $user->save();
+        \Auth::logout();
+        return redirect('/login');
+    }
+
 }

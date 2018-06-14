@@ -23,6 +23,7 @@ class Task extends Model
                 ->groupBy('year' ,'month')
                 ->orderByRaw('min(created_at) desc')
                 ->where('user_id', auth()->id())
+                ->where('is_deleted', 0)
                 ->get(); 
     }
 

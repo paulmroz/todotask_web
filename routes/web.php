@@ -48,3 +48,6 @@ Route::get('/auth/github/callback', 'Auth\LoginController@handleProviderCallback
 Route::get('/profile','UserController@index');
 Route::post('/profile','UserController@updateAvatar');
 Route::post('/profile/password/reset','UserController@updatePassword');
+
+Route::get('/profile/destroy','UserController@deletePassword');
+Route::post('/profile/destroy','UserController@destroyPassword');
