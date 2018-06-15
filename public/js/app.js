@@ -160,7 +160,7 @@ $(document).ready(function () {
 		var coords = {
 			height: dropdownCoords.height,
 			width: dropdownCoords.width,
-			top: dropdownCoords.top - navCoords.top - 25,
+			top: dropdownCoords.top - navCoords.top - 20,
 			left: dropdownCoords.left - navCoords.left - 20
 		};
 

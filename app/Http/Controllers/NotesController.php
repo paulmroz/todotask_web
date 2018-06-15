@@ -12,6 +12,10 @@ use App\Note;
 
 class NotesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function store(Task $task){
 
     	request()->validate([
