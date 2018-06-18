@@ -21,7 +21,7 @@
         </div>
         
         <div class="main_photo">
-            <div class="fotorama" data-autoplay="true">
+            <div class="fotorama" data-autoplay="true" data-width="100%" data-height="500" >
                 @foreach($photos as $photo)
                     <img src="storage/photos/{{$photo->photo}}">
                 @endforeach

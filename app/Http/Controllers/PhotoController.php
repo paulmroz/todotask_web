@@ -17,7 +17,7 @@ class PhotoController extends Controller
      */
 
     public function __construct(){
-        $this->middleware('auth')->except('create');
+        $this->middleware('admin')->except('create');
     }
 
     public function index()

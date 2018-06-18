@@ -6,13 +6,16 @@
 @endsection
 @section('content')
 <div class="box-main-content">
-@auth
+
+@admin
 	<a href="/gallery/manage" class="user_button manage">Click here to manage the gallery</a>
 	<br>
 	<h3>You can only delete photo's added by you!.</h3>
-@endauth	
+@endadmin
+
+
 <div class="main_photo">
-        <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs" data-loop="true">
+        <div class="fotorama" data-allowfullscreen="true" data-width="100%" data-height="500" data-nav="thumbs" data-loop="true">
     		@foreach($photos as $photo)
     			<img src="storage/photos/{{$photo->photo}}">
     		@endforeach
@@ -20,7 +23,8 @@
  </div>
 
 <br>
-@auth
+
+@admin
 <form class="box" method="POST" action="/gallery" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	<label class="filed_title_text">Name:</label>
@@ -43,7 +47,7 @@
 	</button>
 {{-- @include('layouts.error') --}}
 </form>
-@endauth
+@endadmin
 
 @if($flash = session('message'))
 	<div id="flash-message">
