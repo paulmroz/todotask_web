@@ -54,13 +54,36 @@ class TaskController extends Controller
      */
     public function store(AddTaskForm $form)
     {
-        $form->persist();
+        $task = Task::create([
+            'title'=> request('title'),
+            'body' => request('body'),
+            'user_id'=> auth()->id()
+        ]);
 
-        /* try{
-            $form->persist();
-         } catch(Exception $e){
-             return 'nie można';
-         } */
+
+        $tags = request('tags');
+        //Split string with tags into array.
+        $tag_array = preg_split('/\s*(,|\.|#)\s*/', $tags);
+        //If first element of array equal empty string return.
+        if ($tag_array[0]=='') {
+            return;
+        }
+        //Creating tags in Tag table. If tag already exist continue if not create tag.
+        foreach ($tag_array as $tag) {
+            $singleTag = Tag::firstOrNew(['name' => $tag]);
+            if ($singleTag->exists) {
+                continue;
+            }
+
+            $singleTag->fill([
+                'name' => $tag,
+            ])->save();
+        }
+        //Attach tags in pivot table with specific tag.
+        foreach ($tag_array as $tag) {
+            $tag_id = Tag::where('name', $tag)->first();
+            $task->tags()->attach($tag_id->id);
+        }
 
         session()->flash('message', 'Task added');
 
