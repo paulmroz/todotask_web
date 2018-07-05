@@ -7,8 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Photo;
 
 class AddPhotoForm extends FormRequest
-{   
-      /**
+{
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -27,32 +27,7 @@ class AddPhotoForm extends FormRequest
     {
         return [
             'name' => 'required',
-            'photo' => 'required'
+            'photo' => 'required|mimes:jpeg,bmp,png,gif'
         ];
-    }
-
-    public function persist()
-    {
-        $fileNameWithExt = request()->file('photo')->getClientOriginalName();
-
-        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-
-        $extension = request()->file('photo')->getClientOriginalExtension();
-
-        $fileNameToStore = $fileName.'_'. time().'.'.$extension;
-
-        $fileSize = request()->file('photo')->getClientSize();
-
-        $path = request()->file('photo')->storeAs('public/photos', $fileNameToStore);
-
-        Photo::create([
-
-            'photo'=> $fileNameToStore,
-            'title' => request('name'),
-            'size' => $fileSize,
-            'user_id'=> auth()->id(),
-            'description' => request('description')
-
-        ]);
     }
 }

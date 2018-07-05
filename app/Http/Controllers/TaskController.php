@@ -79,7 +79,7 @@ class TaskController extends Controller
                 'name' => $tag,
             ])->save();
         }
-        //Attach tags in pivot table with specific tag.
+        //Attach tags in pivot table with specific task.
         foreach ($tag_array as $tag) {
             $tag_id = Tag::where('name', $tag)->first();
             $task->tags()->attach($tag_id->id);
@@ -99,16 +99,6 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         return view('task.show', compact('task'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
     }
 
     /**

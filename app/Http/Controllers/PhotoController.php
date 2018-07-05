@@ -46,7 +46,27 @@ class PhotoController extends Controller
      */
     public function store(AddPhotoForm $request)
     {
-        $request->persist();
+        $fileNameWithExt = request()->file('photo')->getClientOriginalName();
+
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+        $extension = request()->file('photo')->getClientOriginalExtension();
+
+        $fileNameToStore = $fileName.'_'. time().'.'.$extension;
+
+        $fileSize = request()->file('photo')->getClientSize();
+
+        $path = request()->file('photo')->storeAs('public/photos', $fileNameToStore);
+
+        Photo::create([
+
+            'photo'=> $fileNameToStore,
+            'title' => request('name'),
+            'size' => $fileSize,
+            'user_id'=> auth()->id(),
+            'description' => request('description')
+
+        ]);
 
         session('message', 'Photo added');
 
