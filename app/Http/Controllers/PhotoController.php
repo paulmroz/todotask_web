@@ -16,14 +16,15 @@ class PhotoController extends Controller
      * @return \Illuminate\Http\
      */
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('admin')->except('create');
     }
 
     public function index()
-    {   
+    {
         $photos = Photo::paginate(10);
-        return view('gallery.manage',compact('photos'));
+        return view('gallery.manage', compact('photos'));
     }
 
     /**
@@ -34,8 +35,7 @@ class PhotoController extends Controller
     public function create()
     {
         $photos = Photo::all();
-        return view('gallery.index',compact('photos'));    
-
+        return view('gallery.index', compact('photos'));
     }
 
     /**
@@ -46,14 +46,11 @@ class PhotoController extends Controller
      */
     public function store(AddPhotoForm $request)
     {
-        
-            $request->persist();
+        $request->persist();
 
-            session('message','Photo added');
+        session('message', 'Photo added');
 
-            return redirect()->back();
-
-
+        return redirect()->back();
     }
 
     /**
@@ -64,7 +61,6 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        
     }
 
     /**
@@ -97,16 +93,16 @@ class PhotoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Photo $photo)
-    {   
-        if(auth()->user()->admin == true){
+    {
+        if (auth()->user()->admin == true) {
             $photo->find($photo->id);
             $photo->delete();
         }
 
-        if($photo->user_id == auth()->id()){
+        if ($photo->user_id == auth()->id()) {
             $photo->find($photo->id);
             $photo->delete();
-        }    
+        }
 
         return redirect()->back();
     }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use Socialite;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -42,8 +43,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-    {   
-      
+    {
         $this->checkIfUserisDeleted($request);
 
         $this->validateLogin($request);
@@ -67,23 +67,23 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
-      /*  $credentials = $request->only('email', 'password');
+        /*  $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'admin' => 1])) {
-            // Authentication passed...
-            return redirect()->intended('/');
-        } else {
-            return back();
-        }*/
+          if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'admin' => 1])) {
+              // Authentication passed...
+              return redirect()->intended('/');
+          } else {
+              return back();
+          }*/
     }
 
-     /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /**
+    * Redirect the user to the GitHub authentication page.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function redirectToProvider()
-    {   
+    {
         return Socialite::driver('github')->stateless()->redirect();
     }
 
@@ -104,15 +104,17 @@ class LoginController extends Controller
     }
 
     protected function findOrCreateGitHubUser($githubUser)
-    {   
+    {
         //dd($githubUser->user['avatar_url']);
         $user = User::firstOrNew(['github_id' => $githubUser->id]);
 
-        if($user->exists) return $user;
+        if ($user->exists) {
+            return $user;
+        }
 
         $user->fill([
             'name' => $githubUser->nickname,
-            'email'=> $githubUser->email,    
+            'email'=> $githubUser->email,
             'avatar' => $githubUser->user['avatar_url']
         ])->save();
 
@@ -120,17 +122,15 @@ class LoginController extends Controller
     }
 
     public function checkIfUserisDeleted($request)
-    {   
+    {
         //dd($request->email);
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email', $request->email)->first();
         //dd($user->name);
-        if(!$user)
-        {   
+        if (!$user) {
             return redirect()->to('/login')->send();
         }
 
-        if($user->is_deleted)
-        {   
+        if ($user->is_deleted) {
             //dd($user->name);
             return redirect()->to('/login')->send()->withErrors(['The Message']);
         }

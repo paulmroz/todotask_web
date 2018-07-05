@@ -15,7 +15,7 @@
 
 
 <div class="main_photo">
-        <div class="fotorama" data-allowfullscreen="true" data-width="100%" data-height="500" data-nav="thumbs" data-loop="true">
+       	<div class="fotorama" data-allowfullscreen="true" data-width="100%" data-height="500" data-nav="thumbs" data-loop="true">
     		@foreach($photos as $photo)
     			<img src="storage/photos/{{$photo->photo}}">
     		@endforeach

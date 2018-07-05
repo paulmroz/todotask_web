@@ -27,15 +27,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function tasks(){
+    public function tasks()
+    {
         return $this->hasMany(Task::class);
     }
 
-    public function notes(){
+    public function notes()
+    {
         return $this->hasMany(Note::class);
     }
 
-    public function photo(){
+    public function photo()
+    {
         return $this->hasMany(Photo::class);
     }
 }

@@ -18,7 +18,6 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -29,10 +28,10 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(TaskRepository $tasks)
-    {   
+    {
         $tasks=$tasks->fetchAlluserTask();
 
-        return view('task.index',compact('tasks'));
+        return view('task.index', compact('tasks'));
     }
 
     /**
@@ -44,7 +43,7 @@ class TaskController extends Controller
     {
         $tags = Tag::all();
 
-        return view('task.create',compact('tags'));
+        return view('task.create', compact('tags'));
     }
 
     /**
@@ -57,13 +56,13 @@ class TaskController extends Controller
     {
         $form->persist();
 
-       /* try{
-           $form->persist();
-        } catch(Exception $e){
-            return 'nie można';
-        } */
+        /* try{
+            $form->persist();
+         } catch(Exception $e){
+             return 'nie można';
+         } */
 
-        session()->flash('message','Task added');
+        session()->flash('message', 'Task added');
 
         return redirect('/tasks');
     }
@@ -75,8 +74,7 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Task $task)
-    {   
-
+    {
         return view('task.show', compact('task'));
     }
 
@@ -88,7 +86,6 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        
     }
 
     /**
@@ -99,13 +96,13 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Task $task)
-    {   
-        if(strlen(request('title')) < 6 || strlen(request('body')) < 6){
+    {
+        if (strlen(request('title')) < 6 || strlen(request('body')) < 6) {
             return redirect()->back();
         }
         $task->title = request('title');
         $task->body = request('body');
-        $task->save();  
+        $task->save();
 
         return response()->json([
             'status' => 'success',
@@ -121,9 +118,8 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Task $task)
-    {   
-        if ($task->user_id === auth()->id())  {
-
+    {
+        if ($task->user_id === auth()->id()) {
             $task->find($task->id);
 
             $task->notes()->delete();

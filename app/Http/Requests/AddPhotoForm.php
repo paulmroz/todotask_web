@@ -33,21 +33,21 @@ class AddPhotoForm extends FormRequest
 
     public function persist()
     {
-            $fileNameWithExt = request()->file('photo')->getClientOriginalName();
+        $fileNameWithExt = request()->file('photo')->getClientOriginalName();
 
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
 
-            $extension = request()->file('photo')->getClientOriginalExtension();
+        $extension = request()->file('photo')->getClientOriginalExtension();
 
-            $fileNameToStore = $fileName.'_'. time().'.'.$extension;
+        $fileNameToStore = $fileName.'_'. time().'.'.$extension;
 
-            $fileSize = request()->file('photo')->getClientSize();
+        $fileSize = request()->file('photo')->getClientSize();
 
-            $path = request()->file('photo')->storeAs('public/photos', $fileNameToStore);
+        $path = request()->file('photo')->storeAs('public/photos', $fileNameToStore);
 
             
 
-            Photo::create([
+        Photo::create([
 
                 'photo'=> $fileNameToStore,
                 'title' => request('name'),

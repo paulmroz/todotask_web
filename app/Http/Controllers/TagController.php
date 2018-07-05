@@ -22,13 +22,13 @@ class TagController extends Controller
     }
 
     public function index(Tag $tag)
-    {   
-            $tasks = $tag->tasks()->where('user_id',auth()->id())->paginate(5);
+    {
+        $tasks = $tag->tasks()->where('user_id', auth()->id())->paginate(5);
 
-            //return $tasks;
+        //return $tasks;
 
-            //dump($tag->getUserTasksByTags());
-            return view('task.index',compact('tasks'));
+        //dump($tag->getUserTasksByTags());
+        return view('task.index', compact('tasks'));
     }
 
     /**
@@ -38,7 +38,7 @@ class TagController extends Controller
      */
     public function create()
     {
-         return view('tags.create');
+        return view('tags.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class TagController extends Controller
             'name' => request('name'),
         ]);
 
-        session()->flash('message','Tag successfuly added');
+        session()->flash('message', 'Tag successfuly added');
 
         return redirect()->back();
     }

@@ -11,6 +11,6 @@ class TaskTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Task',5)->create();
+        factory('App\Task', 5)->create();
     }
 }

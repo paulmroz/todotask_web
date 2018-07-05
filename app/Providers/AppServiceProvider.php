@@ -13,13 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         \Blade::if('admin', function () {
             return auth()->check() && auth()->user()->admin;
         });
 
-        view()->composer('layouts.sidebar', function($view) {
-
+        view()->composer('layouts.sidebar', function ($view) {
             $archives =\App\Task::archives();
 
             /*$tags =  \App\Tag::has('tasks')->pluck('name');*/
@@ -29,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
             $tags_with_dupliaction = [];
             foreach ($tags_names as $tag) {
                 $tagname = $tag->tags->pluck('name');
-               // var_dump($tagname);
+                // var_dump($tagname);
                 foreach ($tagname as $name) {
                     $tags_with_dupliaction [] = $name;
                 }
@@ -39,7 +37,6 @@ class AppServiceProvider extends ServiceProvider
 
             
             $view->with(compact('archives', 'tags'));
-    
         });
     }
 
@@ -50,6 +47,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       
     }
 }

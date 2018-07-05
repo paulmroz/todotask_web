@@ -34,14 +34,14 @@ class AddTaskForm extends FormRequest
     }
 
     public function persist()
-    {  
+    {
 
        //$tags = str_replace('#', '', request('tags'));
-       $tags = request('tags');
-       //$tag_array = explode(',', $tags);
-       $tag_array = preg_split('/\s*(,|\.|#)\s*/', $tags);
-       //die();
-       //dd($tag_array);
+        $tags = request('tags');
+        //$tag_array = explode(',', $tags);
+        $tag_array = preg_split('/\s*(,|\.|#)\s*/', $tags);
+        //die();
+        //dd($tag_array);
 
         $task = Task::create([
             'title'=> request('title'),
@@ -49,11 +49,15 @@ class AddTaskForm extends FormRequest
             'user_id'=> auth()->id()
         ]);
 
-        if($tag_array[0]=='') return;
+        if ($tag_array[0]=='') {
+            return;
+        }
         
         foreach ($tag_array as $tag) {
             $singleTag = Tag::firstOrNew(['name' => $tag]);
-            if($singleTag->exists) continue;
+            if ($singleTag->exists) {
+                continue;
+            }
 
             $singleTag->fill([
                 'name' => $tag,
